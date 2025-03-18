@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "./pb";
+
+message CreateRequest {
+  uint64 Uid = 1;
+  uint64 Pid = 2;
+  uint64 Amount = 3;
+  uint64 Status = 4;
+}
+
+message CreateResponse {
+  uint64 Id = 1;
+}
+
+message UpdateRequest {
+  uint64 Id = 1;
+  uint64 Uid = 2;
+  uint64 Pid = 3;
+  uint64 Amount = 4;
+  uint64 Status = 5;
+}
+
+message UpdateResponse {
+
+}
+
+message RemoveRequest {
+  uint64 Id = 1;
+}
+
+message RemoveResponse {}
+
+message DetailRequest {
+  uint64 Id = 1;
+}
+
+message DetailResponse {
+  uint64 Id = 1;
+  uint64 Uid = 2;
+  uint64 Pid = 3;
+  uint64 Amount = 4;
+  uint64 Status = 5;
+}
+
+message ListRequest {
+  uint64 Uid = 1;
+}
+
+message ListResponse {
+  repeated DetailResponse Data = 1;
+}
+//订单支付
+message PaidRequest {
+  uint64 Id = 1;
+}
+
+message PaidResponse{}
+
+service Order {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Remove(RemoveRequest) returns (RemoveResponse);
+  rpc Detail(DetailRequest) returns (DetailResponse);
+  rpc List(ListRequest) returns (ListResponse);
+  rpc Paid(PaidRequest) returns (PaidResponse);
+}

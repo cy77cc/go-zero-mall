@@ -1,0 +1,26 @@
+Name: pay.rpc
+ListenOn: 0.0.0.0:8080
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: pay.rpc
+
+Mysql:
+  DataSource: root:123456@tcp(127.0.0.1:3307)/mall?charset=utf8mb4&parseTime=true
+
+CacheRedis:
+  - Host: 127.0.0.1:6379
+    Type: node
+
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+
+OrderRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: order.rpc
