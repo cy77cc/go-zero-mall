@@ -27,7 +27,7 @@ func NewRemoveLogic(ctx context.Context, svcCtx *svc.ServiceContext) *RemoveLogi
 }
 
 func (l *RemoveLogic) Remove(in *pb.RemoveRequest) (*pb.RemoveResponse, error) {
-	res, err := l.svcCtx.OrderModel.FindOne(l.ctx, in.Id)
+	_, err := l.svcCtx.OrderModel.FindOne(l.ctx, in.Id)
 	if err != nil {
 		if errors.Is(err, model.ErrNotFound) {
 			return nil, status.Error(100, "订单不存在")

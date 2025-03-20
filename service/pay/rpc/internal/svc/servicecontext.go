@@ -20,7 +20,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	conn := sqlx.NewMysql(c.Mysql.DataSource)
 	return &ServiceContext{
 		Config:   c,
-		PayModel: model.NewPayModel(conn),
+		PayModel: model.NewPayModel(conn, c.CacheRedis),
 		UserRpc:  user.NewUser(zrpc.MustNewClient(c.UserRpc)),
 		OrderRpc: order.NewOrder(zrpc.MustNewClient(c.OrderRpc)),
 	}

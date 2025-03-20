@@ -46,9 +46,18 @@ message DetailResponse {
   uint64 Status = 6;
 }
 
+message DecrStockRequest {
+  uint64 Id = 1;
+  int64 num = 2;
+}
+
+message DecrStockResponse {}
+
 service Product {
   rpc Create(CreateRequest) returns (CreateResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Remove(RemoveRequest) returns (RemoveResponse);
   rpc Detail(DetailRequest) returns (DetailResponse);
+  rpc DecrStock(DecrStockRequest) returns (DecrStockResponse);
+  rpc DecrStockRevert(DecrStockRequest) returns (DecrStockResponse);
 }

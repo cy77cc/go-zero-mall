@@ -42,3 +42,13 @@ func (s *ProductServer) Detail(ctx context.Context, in *pb.DetailRequest) (*pb.D
 	l := logic.NewDetailLogic(ctx, s.svcCtx)
 	return l.Detail(in)
 }
+
+func (s *ProductServer) DecrStock(ctx context.Context, in *pb.DecrStockRequest) (*pb.DecrStockResponse, error) {
+	l := logic.NewDecrStockLogic(ctx, s.svcCtx)
+	return l.DecrStock(in)
+}
+
+func (s *ProductServer) DecrStockRevert(ctx context.Context, in *pb.DecrStockRequest) (*pb.DecrStockResponse, error) {
+	l := logic.NewDecrStockRevertLogic(ctx, s.svcCtx)
+	return l.DecrStockRevert(in)
+}

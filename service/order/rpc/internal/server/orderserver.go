@@ -28,6 +28,11 @@ func (s *OrderServer) Create(ctx context.Context, in *pb.CreateRequest) (*pb.Cre
 	return l.Create(in)
 }
 
+func (s *OrderServer) CreateRevert(ctx context.Context, in *pb.CreateRequest) (*pb.CreateResponse, error) {
+	l := logic.NewCreateRevertLogic(ctx, s.svcCtx)
+	return l.CreateRevert(in)
+}
+
 func (s *OrderServer) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.UpdateResponse, error) {
 	l := logic.NewUpdateLogic(ctx, s.svcCtx)
 	return l.Update(in)

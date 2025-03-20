@@ -6,19 +6,32 @@ Etcd:
   Key: order.rpc
 
 Mysql:
-  DataSource: root:123456@tcp(127.0.0.1:3307)/mall?charset=utf8mb4&parseTime=true
+  DataSource: root:123456@tcp(127.0.0.1:3307)/mall?charset=utf8mb4&parseTime=true&dial_timeout=10s&read_timeout=20s
 
 CacheRedis:
   - Host: 127.0.0.1:6379
     Type: node
 
 UserRpc:
-  Hosts:
-    - 127.0.0.1:2379
-  Key: user.rpc
-
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
 
 ProductRpc:
-  Hosts:
-    - 127.0.0.1:2379
-  Key: product.rpc
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: product.rpc
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 9092
+  Path: /metrics
+
+
+Telemetry:
+  Name: order.rpc
+  Endpoint: http://172.19.0.8:14268/api/traces
+  Sampler: 1.0
+  Batcher: jeager

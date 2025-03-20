@@ -15,8 +15,22 @@ Auth:
   AccessExpire: 86400
 
 UserRpc:
+  App: userapi
+  Token: 6jKNZbEpYGeUMAifz10gOnmoty3TV
   Etcd:
     Hosts:
       - 127.0.0.1:2379
     Key: user.rpc
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 9080
+  Path: /metrics
+
+Telemetry:
+  Name: user.api
+  Endpoint: http://172.19.0.8:14268/api/traces
+  Sampler: 1.0
+  Batcher: jeager
+
 

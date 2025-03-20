@@ -1,5 +1,5 @@
 Name: product.rpc
-ListenOn: 0.0.0.0:9001
+ListenOn: 0.0.0.0:19001
 Etcd:
   Hosts:
   - 127.0.0.1:2379
@@ -7,9 +7,20 @@ Etcd:
 
 
 Mysql:
-  DataSource: root:123456@tcp(127.0.0.1:3307)/mall?charset=utf8mb4&parseTime=true
+  DataSource: root:123456@tcp(127.0.0.1:3307)/mall?charset=utf8mb4&parseTime=true&dial_timeout=10s&read_timeout=20s
 
 CacheRedis:
   - Host: 127.0.0.1:6379
     Type: node
 #    Pass:
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 9091
+  Path: /metrics
+
+Telemetry:
+  Name: product.rpc
+  Endpoint: http://172.19.0.8:14268/api/traces
+  Sampler: 1.0
+  Batcher: jeager
